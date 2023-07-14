@@ -118,9 +118,11 @@ cookiecutter https://github.com/Godsing/cookiecutter-data-science
 
 ### 数据是不可变的
 
-切勿编辑原始数据，尤其不要手动编辑，尤其不要在 Excel 中编辑。不要覆盖您的原始数据。不要保存原始数据的多个版本。将数据（及其格式）视为不可变。您编写的代码应该通过管道将原始数据移至最终分析。您不必每次想要创建新图形时都运行所有步骤（请参阅[Analysis is a DAG](https://github.com/Godsing/cookiecutter-data-science#analysis-is-a-dag)），但任何人都应该能够仅使用 中的代码`src`和 中的数据来重现最终产品`data/raw`。
+切勿编辑原始数据，尤其不要手动编辑，尤其不要在 Excel 中编辑。不要覆盖您的原始数据。不要保存原始数据的多个版本。将数据（及其格式）视为不可变。您编写的代码应该通过管道式的处理，将原始数据流转至最终数据。您不必每次想要创建新图形时都运行所有步骤（请参阅[Analysis is a DAG](https://github.com/Godsing/cookiecutter-data-science#analysis-is-a-dag)），但任何人都应该能够仅使用`src`中的代码和`data/raw`中的数据来复现最终结果。
 
-此外，如果数据是不可变的，则它不需要像代码那样进行源代码控制。因此，***默认情况下，数据文件夹包含在`.gitignore`文件中。***如果您有少量很少更改的数据，您可能希望将这些数据包含在存储库中。Github 目前会在文件超过 50MB 时发出警告，并拒绝超过 100MB 的文件。用于存储/同步大数据的其他一些选项包括带有同步工具（例如）的[AWS S3 、 ](https://aws.amazon.com/s3/)[Git Large File Storage](https://git-lfs.github.com/)、[Git Annex](https://git-annex.branchable.com/)和[dat](http://dat-data.com/)。目前默认情况下，我们请求 S3 存储桶并使用[AWS CLI](http://docs.aws.amazon.com/cli/latest/reference/s3/index.html)将文件夹中的数据与服务器同步。[`s3cmd`](http://s3tools.org/s3cmd)`data`
+此外，如果数据是不可变的，则它不需要像代码那样进行源代码控制。因此，***默认情况下，数据文件夹包含在`.gitignore`文件中。*** 如果您有少量很少更改的数据，您可能希望将这些数据包含在存储库中。Github 目前会在文件超过 50MB 时发出警告，并拒绝超过 100MB 的文件。用于存储/同步大数据的其他一些选项包括（例如）：带有同步工具的[AWS S3](https://aws.amazon.com/s3/)、[Git Large File Storage](https://git-lfs.github.com/)、[Git Annex](https://git-annex.branchable.com/)和[dat](http://dat-data.com/)。
+
+> 本项目不含 AWS S3 上传下载工具，如果需要，可参考[原始项目](https://github.com/drivendata/cookiecutter-data-science/blob/master/docs/docs/index.md#:~:text=Currently%20by%20default)。
 
 ### 笔记本用于探索和交流
 
@@ -133,7 +135,7 @@ cookiecutter https://github.com/Godsing/cookiecutter-data-science
 
 现在默认情况下我们将项目转换为 Python 包（请参阅`setup.py`文件）。您可以导入代码并在具有如下单元格的笔记本中使用它：
 
-```
+```python
 # OPTIONAL: Load the "autoreload" extension so that code can change
 %load_ext autoreload
 
@@ -143,11 +145,9 @@ cookiecutter https://github.com/Godsing/cookiecutter-data-science
 from src.data import make_dataset
 ```
 
-
-
 ### 分析是有向无环图（[DAG](https://en.wikipedia.org/wiki/Directed_acyclic_graph)）
 
-通常，在分析中，您需要长时间运行的步骤来预处理数据或训练模型。如果这些步骤已经运行（并且您已将输出存储在目录等位置`data/interim`），您不想每次都等待重新运行它们。我们更喜欢[`make`](https://www.gnu.org/software/make/)管理相互依赖的步骤，尤其是长时间运行的步骤。Make 是基于 Unix 的平台上的常用工具（并且[可用于 Windows](https://github.com/Godsing/cookiecutter-data-science/blob/wgx/docs/docs)）。遵循[`make`文档](https://www.gnu.org/software/make/)、[Makefile 约定](https://www.gnu.org/prep/standards/html_node/Makefile-Conventions.html#Makefile-Conventions)和[可移植性指南](http://www.gnu.org/savannah-checkouts/gnu/autoconf/manual/autoconf-2.69/html_node/Portable-Make.html#Portable-Make)将有助于确保您的 Makefile 跨系统有效工作。下面[是](https://web.archive.org/web/20150206054212/http://www.bioinformaticszen.com/post/decomplected-workflows-makefiles/)[一些](http://zmjones.com/make/) 入门[示例](http://blog.kaggle.com/2012/10/15/make-for-data-scientists/)。人们使用许多数据`make`作为他们选择的工具，包括[Mike Bostock](https://bost.ocks.org/mike/make/)。
+通常，在分析（指数据处理）中，您需要长时间运行的步骤来预处理数据或训练模型。如果这些步骤已经运行（并且您已将输出存储在目录等位置`data/interim`），您不想每次都等待重新运行它们。我们更喜欢[`make`](https://www.gnu.org/software/make/)管理相互依赖的步骤，尤其是长时间运行的步骤。Make 是基于 Unix 的平台上的常用工具（并且[可用于 Windows](https://github.com/Godsing/cookiecutter-data-science/blob/wgx/docs/docs)）。遵循[`make`文档](https://www.gnu.org/software/make/)、[Makefile 约定](https://www.gnu.org/prep/standards/html_node/Makefile-Conventions.html#Makefile-Conventions)和[可移植性指南](http://www.gnu.org/savannah-checkouts/gnu/autoconf/manual/autoconf-2.69/html_node/Portable-Make.html#Portable-Make)将有助于确保您的 Makefile 跨系统有效工作。下面[是](https://web.archive.org/web/20150206054212/http://www.bioinformaticszen.com/post/decomplected-workflows-makefiles/)[一些](http://zmjones.com/make/) 入门[示例](http://blog.kaggle.com/2012/10/15/make-for-data-scientists/)。人们使用许多数据`make`作为他们选择的工具，包括[Mike Bostock](https://bost.ocks.org/mike/make/)。
 
 还有其他用 Python 而不是 DSL 编写的 DAG 管理工具（例如[Paver](http://paver.github.io/paver/#)、[Luigi](http://luigi.readthedocs.org/en/stable/index.html)、[Airflow](https://airflow.apache.org/index.html)、[Snakemake](https://snakemake.readthedocs.io/en/stable/)、[Ruffus](http://www.ruffus.org.uk/)或[Joblib](https://pythonhosted.org/joblib/memory.html)）。如果它们更适合您的分析，请随意使用它们。
 
@@ -223,7 +223,7 @@ aws_secret_access_key=myprojectsecretkey
 
 ### 更改默认文件夹结构时要保守
 
-为了使这种结构广泛适用于许多不同类型的项目，我们认为最好的方法是自由地更改项目周围的文件夹*，*但在更改*所有*项目的默认结构时保持保守。
+为了使这种结构广泛适用于许多不同类型的项目，我们认为最好的方法是自由地更改*你的*项目周围的文件夹，但在更改*所有*项目的默认结构时尽量保守。
 
 我们专门针对建议添加、删除、重命名或移动文件夹的问题创建了文件夹布局标签。更一般地说，我们还为在实施之前应进行仔细讨论和广泛支持的问题创建了需求讨论标签。
 

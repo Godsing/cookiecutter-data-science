@@ -25,10 +25,11 @@ _A logical, reasonably standardized, but flexible project structure for doing an
 ## 使用该模板创建新项目
 
 ```bash
-cookiecutter -c v1 https://github.com/Godsing/cookiecutter-data-science
+cookiecutter -c wgx https://github.com/Godsing/cookiecutter-data-science
 ```
+
 > 此项目模板**即将**转到 v2 版本，届时将需要使用命令 `ccds ...` 而不是 `cookiecutter ...`。
-> 不过 cookiecutter 命令和此版本的模板仍然可用，但需要显式使用 `-c v1` 来选择它。
+> 不过 cookiecutter 命令和此版本的模板仍然可用，但需要显式使用 `-c wgx` 来选择它。
 
 新项目的目录结构如下：
 

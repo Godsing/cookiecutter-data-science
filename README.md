@@ -1,108 +1,75 @@
-# Cookiecutter Data Science
+# Cookiecutter 数据科学项目模板
 
+一个逻辑清晰、标准化但依然灵活的项目结构，用于数据科学研发。
 _A logical, reasonably standardized, but flexible project structure for doing and sharing data science work._
 
+> Fork from: [cookiecutter-data-science](https://github.com/drivendata/cookiecutter-data-science)
+> 本仓库在原始仓库的基础上做了一些修改，以适应自己的工作习惯。如果您觉得还不错，欢迎使用！
 
-#### [Project homepage](http://drivendata.github.io/cookiecutter-data-science/)
+## 使用该模板的要求
 
-
-### Requirements to use the cookiecutter template:
------------
  - Python 2.7 or 3.5+
- - [Cookiecutter Python package](http://cookiecutter.readthedocs.org/en/latest/installation.html) >= 1.4.0: This can be installed with pip by or conda depending on how you manage your Python packages:
+ - [Cookiecutter Python 包](http://cookiecutter.readthedocs.org/en/latest/installation.html) >= 1.4.0: 可以使用 pip by 或 conda 安装（具体取决于您管理 Python 包的方式）：
 
-``` bash
-$ pip install cookiecutter
+    ```bash
+    pip install cookiecutter
+    ```
+
+    或者
+
+    ```bash
+    conda config --add channels conda-forge
+    conda install cookiecutter
+    ```
+
+## 使用该模板创建新项目
+
+```bash
+cookiecutter -c v1 https://github.com/Godsing/cookiecutter-data-science
 ```
+> 此项目模板**即将**转到 v2 版本，届时将需要使用命令 `ccds ...` 而不是 `cookiecutter ...`。
+> 不过 cookiecutter 命令和此版本的模板仍然可用，但需要显式使用 `-c v1` 来选择它。
 
-or
-
-``` bash
-$ conda config --add channels conda-forge
-$ conda install cookiecutter
-```
-
-
-### To start a new project, run:
-------------
-
-    cookiecutter -c v1 https://github.com/drivendata/cookiecutter-data-science
-
-
-[![asciicast](https://asciinema.org/a/244658.svg)](https://asciinema.org/a/244658)
-
-### New version of Cookiecutter Data Science
-------------
-Cookiecutter data science is moving to v2 soon, which will entail using
-the command `ccds ...` rather than `cookiecutter ...`. The cookiecutter command
-will continue to work, and this version of the template will still be available.
-To use the legacy template, you will need to explicitly use `-c v1` to select it.
-Please update any scripts/automation you have to append the `-c v1` option (as above),
-which is available now.
-
-
-### The resulting directory structure
-------------
-
-The directory structure of your new project looks like this: 
+新项目的目录结构如下：
 
 ```
-├── LICENSE
-├── Makefile           <- Makefile with commands like `make data` or `make train`
-├── README.md          <- The top-level README for developers using this project.
+├── README.md          <- 项目开发者使用的顶级 README 文件
 ├── data
-│   ├── external       <- Data from third party sources.
-│   ├── interim        <- Intermediate data that has been transformed.
-│   ├── processed      <- The final, canonical data sets for modeling.
-│   └── raw            <- The original, immutable data dump.
+│   ├── raw            <- 原始、不可变的数据转储
+│   ├── processed      <- 最终用于建模的规范化数据集
+│   ├── interim        <- 经过转换的中间数据
+│   └── external       <- 第三方数据源
 │
-├── docs               <- A default Sphinx project; see sphinx-doc.org for details
+├── notebooks          <- Jupyter 笔记本。命名约定为数字(用于排序)+描述，例如:
+│                         `1.0-initial-data-exploration.ipynb`
 │
-├── models             <- Trained and serialized models, model predictions, or model summaries
-│
-├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-│                         the creator's initials, and a short `-` delimited description, e.g.
-│                         `1.0-jqp-initial-data-exploration`.
-│
-├── references         <- Data dictionaries, manuals, and all other explanatory materials.
-│
-├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-│   └── figures        <- Generated graphics and figures to be used in reporting
-│
-├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-│                         generated with `pip freeze > requirements.txt`
-│
-├── setup.py           <- makes project pip installable (pip install -e .) so src can be imported
-├── src                <- Source code for use in this project.
-│   ├── __init__.py    <- Makes src a Python module
+├── src                <- 用于此项目的源代码
+│   ├── __init__.py    <- 使 src 目录成为一个 Python 模块
 │   │
-│   ├── data           <- Scripts to download or generate data
-│   │   └── make_dataset.py
+│   ├── data           <- 下载或处理数据的脚本
 │   │
-│   ├── features       <- Scripts to turn raw data into features for modeling
-│   │   └── build_features.py
+│   ├── modeling       <- 模型结构(核心代码，训练、评估、推理时均需用到)
+│   │   ├── modeling.py
+│   │   └── config.json
 │   │
-│   ├── models         <- Scripts to train models and then use trained models to make
-│   │   │                 predictions
-│   │   ├── predict_model.py
-│   │   └── train_model.py
+│   ├── train          <- 训练模型的脚本，加载训练集并生成模型权重、记录训练过程
 │   │
-│   └── visualization  <- Scripts to create exploratory and results oriented visualizations
-│       └── visualize.py
+│   ├── eval           <- 评估模型的脚本，加载验证集并生成评估报告
+│   │
+│   └── infer          <- 推理(预测)脚本，可提供 RESTful API 或 CLI 或 Web UI
 │
-└── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
+├── weights            <- 训练得到的模型权重，及其相关的必要配置信息
+│
+├── reports            <- 评估结果等结论性的内容，以图、表等形式呈现
+│
+├── logs               <- 推理接口的日志文件
+│
+├── tmp                <- 临时文件(例如：训练时的 TF events 文件、评估时的中间文件)
+│
+├── requirements.txt   <- 环境要求文件。可通过 `pipreqs . --encoding=utf8 --force`
+│                         或 `pip freeze > requirements.txt` 生成
+│
+├── setup.py           <- 使项目可通过 `pip install -e .` 安装，以便 `import src`.
+├── Makefile           <- 包含诸如 `make data` 或 `make train` 等命令的 Makefile
+└── LICENSE
 ```
-
-## Contributing
-
-We welcome contributions! [See the docs for guidelines](https://drivendata.github.io/cookiecutter-data-science/#contributing).
-
-### Installing development requirements
-------------
-
-    pip install -r requirements.txt
-
-### Running the tests
-------------
-
-    py.test tests

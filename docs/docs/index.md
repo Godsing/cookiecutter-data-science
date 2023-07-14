@@ -1,149 +1,137 @@
-# Cookiecutter Data Science
+# 千篇一律的数据科学
 
-_A logical, reasonably standardized, but flexible project structure for doing and sharing data science work._
+*一个逻辑合理、标准化但灵活的项目结构，用于进行和共享数据科学工作。*
 
-## Why use this project structure?
+## 为什么使用这个项目结构？
 
-> We're not talking about bikeshedding the indentation aesthetics or pedantic formatting standards — ultimately, data science code quality is about correctness and reproducibility.
+> 我们并不是在谈论废除缩进美学或迂腐的格式标准——最终，数据科学代码质量关乎正确性和可重复性。
 
-When we think about data analysis, we often think just about the resulting reports, insights, or visualizations. While these end products are generally the main event, it's easy to focus on making the products _look nice_ and ignore the _quality of the code that generates them_. Because these end products are created programmatically, **code quality is still important**! And we're not talking about bikeshedding the indentation aesthetics or pedantic formatting standards — ultimately, data science code quality is about correctness and reproducibility.
+当我们考虑数据分析时，我们通常只考虑生成的报告、见解或可视化结果。虽然这些最终产品通常是主要事件，但人们很容易将注意力集中在使产品*看起来漂亮*而忽略*生成它们的代码的质量*。由于这些最终产品是以编程方式创建的，因此**代码质量仍然很重要**！我们并不是在谈论废除缩进美学或迂腐的格式标准——最终，数据科学代码质量关乎正确性和可重复性。
 
-It's no secret that good analyses are often the result of very scattershot and serendipitous explorations. Tentative experiments and rapidly testing approaches that might not work out are all part of the process for getting to the good stuff, and there is no magic bullet to turn data exploration into a simple, linear progression.
+众所周知，好的分析往往是非常漫无目的和偶然探索的结果。尝试性实验和可能行不通的快速测试方法都是获得好东西的过程的一部分，并且没有灵丹妙药可以将数据探索变成简单的线性过程。
 
-That being said, once started it is not a process that lends itself to thinking carefully about the structure of your code or project layout, so it's best to start with a clean, logical structure and stick to it throughout. We think it's a pretty big win all around to use a fairly standardized setup like this one. Here's why:
+话虽这么说，一旦开始，它就不是一个需要仔细思考代码结构或项目布局的过程，因此最好从一个干净的逻辑结构开始，并始终坚持下去。我们认为使用像这样的相当标准化的设置是一个相当大的胜利。原因如下：
 
+### 其他人会感谢你的
 
-### Other people will thank you
+> 在创建一个新的 Rails 项目之前，没有人会坐下来思考他们想要将自己的观点放在哪里；他们只是`rails new`像其他人一样跑去获得一个标准的项目框架。
 
-> Nobody sits around before creating a new Rails project to figure out where they want to put their views; they just run `rails new` to get a standard project skeleton like everybody else.
+定义明确的标准项目结构意味着新手无需深入研究大量文档即可开始理解分析。这也意味着他们不一定要阅读 100% 的代码才能知道在哪里寻找非常具体的东西。
 
-A well-defined, standard project structure means that a newcomer can begin to understand an analysis without digging in to extensive documentation. It also means that they don't necessarily have to read 100% of the code before knowing where to look for very specific things.
+组织良好的代码往往是自记录的，因为组织本身为您的代码提供了上下文，而无需太多开销。人们会因此感谢你，因为他们可以：
 
-Well organized code tends to be self-documenting in that the organization itself provides context for your code without much overhead. People will thank you for this because they can:
+- 在此分析方面与您更轻松地协作
+- 从您对流程和领域的分析中了解
+- 对分析得出的结论充满信心
 
- - Collaborate more easily with you on this analysis
- - Learn from your analysis about the process and the domain
- - Feel confident in the conclusions at which the analysis arrives
+在任何主要的 Web 开发框架（如 Django 或 Ruby on Rails）中都可以找到一个很好的例子。在创建一个新的 Rails 项目之前，没有人会坐下来思考他们想要将自己的观点放在哪里；他们只是`rails new`像其他人一样跑去获得一个标准的项目框架。因为默认的项目结构*在大多数项目中都是**合乎逻辑*且合理标准的，所以对于从未见过特定项目的人来说，更容易弄清楚他们在哪里可以找到各种活动部件。
 
-A good example of this can be found in any of the major web development frameworks like Django or Ruby on Rails. Nobody sits around before creating a new Rails project to figure out where they want to put their views; they just run `rails new` to get a standard project skeleton like everybody else. Because that default project structure is _logical_ and _reasonably standard across most projects_, it is much easier for somebody who has never seen a particular project to figure out where they would find the various moving parts.
+另一个很好的例子是类 Unix 系统的[文件系统层次结构标准。](https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard)该`/etc`目录和文件夹一样都有一个非常具体的目的，`/tmp`每个人（或多或少）都同意遵守该社会契约。这意味着 Red Hat 用户和 Ubuntu 用户都大致知道在哪里查找某些类型的文件，即使在使用彼此的系统或任何其他符合标准的系统时也是如此！
 
-Another great example is the [Filesystem Hierarchy Standard](https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard) for Unix-like systems. The `/etc` directory has a very specific purpose, as does the `/tmp` folder, and everybody (more or less) agrees to honor that social contract. That means a Red Hat user and an Ubuntu user both know roughly where to look for certain types of files, even when using each other's system — or any other standards-compliant system for that matter!
+理想情况下，当同事打开你的数据科学项目时应该是这样的。
 
-Ideally, that's how it should be when a colleague opens up your data science project.
+### 你会感谢你的
 
-### You will thank you
+是否曾经尝试过重现几个月前甚至几年前所做的分析？您可能已经编写了代码，但现在不可能判断是否应该使用`make_figures.py.old`, `make_figures_working.py`或`new_make_figures01.py`来完成工作。以下是我们学会带着存在主义恐惧感提出的一些问题：
 
-Ever tried to reproduce an analysis that you did a few months ago or even a few years ago? You may have written the code, but it's now impossible to decipher whether you should use `make_figures.py.old`, `make_figures_working.py` or `new_make_figures01.py` to get things done. Here are some questions we've learned to ask with a sense of existential dread:
+- 我们是否应该在开始之前将 X 列加入到数据中，还是来自其中一台笔记本？
+- 想一想，在运行绘图代码之前我们必须先运行哪个笔记本：是“处理数据”还是“清理数据”？
+- 地理图的 shapefile 从哪里下载？
+- 等等(无穷无尽...)。
 
-* Are we supposed to go in and join the column X to the data before we get started or did that come from one of the notebooks?
-* Come to think of it, which notebook do we have to run first before running the plotting code: was it "process data" or "clean data"?
-* Where did the shapefiles get downloaded from for the geographic plots?
-* _Et cetera, times infinity._
+这些类型的问题是令人痛苦的，并且是项目杂乱无章的症状。良好的项目结构鼓励更容易返回旧工作的实践，例如关注点分离、将分析抽象为 DAG[以及](https://en.wikipedia.org/wiki/Directed_acyclic_graph)版本控制等工程最佳实践。
 
-These types of questions are painful and are symptoms of a disorganized project. A good project structure encourages practices that make it easier to come back to old work, for example separation of concerns, abstracting analysis as a [DAG](https://en.wikipedia.org/wiki/Directed_acyclic_graph), and engineering best practices like version control.
+### 这里没有任何约束力
 
-### Nothing here is binding
+> “愚蠢的一致性是头脑狭隘的怪物”——拉尔夫·沃尔多·爱默生（和[PEP 8！](https://www.python.org/dev/peps/pep-0008/#a-foolish-consistency-is-the-hobgoblin-of-little-minds)）
 
-> "A foolish consistency is the hobgoblin of little minds" — Ralph Waldo Emerson (and [PEP 8!](https://www.python.org/dev/peps/pep-0008/#a-foolish-consistency-is-the-hobgoblin-of-little-minds))
+不同意几个默认文件夹名称？正在从事一个有点不标准且不完全适合当前结构的项目？更喜欢使用与（少数）默认包之一不同的包？
 
-Disagree with a couple of the default folder names? Working on a project that's a little nonstandard and doesn't exactly fit with the current structure? Prefer to use a different package than one of the (few) defaults?
+**大胆试试吧！** 这是一种轻量级结构，旨在成为许多项目的良好*起点。* 或者，正如 PEP 8 所说：
 
-**Go for it!** This is a lightweight structure, and is intended to be a good _starting point_ for many projects. Or, as PEP 8 put it:
+> 项目内的一致性更为重要。一个模块或功能内的一致性是最重要的。...然而，知道何时要不一致——有时风格指南的建议并不适用。如有疑问，请运用您的最佳判断。查看其他示例并决定哪个看起来最好。请随时询问！
 
-> Consistency within a project is more important. Consistency within one module or function is the most important. ... However, know when to be inconsistent -- sometimes style guide recommendations just aren't applicable. When in doubt, use your best judgment. Look at other examples and decide what looks best. And don't hesitate to ask!
+## 入门
 
-## Getting started
+考虑到这一点，我们为 Python 项目创建了一个数据科学 cookiecutter 模板。您的分析不必使用 Python，但模板确实提供了一些您想要删除的 Python 样板文件（`src`例如在文件夹中，以及 中的 Sphinx 文档框架`docs`）。
 
-With this in mind, we've created a data science cookiecutter template for projects in Python. Your analysis doesn't have to be in Python, but the template does provide some Python boilerplate that you'd want to remove (in the `src` folder for example, and the Sphinx documentation skeleton in `docs`).
+### 要求
 
-### Requirements
+- Python 2.7 或 3.5
+- [cookiecutter Python 包](http://cookiecutter.readthedocs.org/en/latest/installation.html)>= 1.4.0：`pip install cookiecutter`
 
- - Python 2.7 or 3.5
- - [cookiecutter Python package](http://cookiecutter.readthedocs.org/en/latest/installation.html) >= 1.4.0: `pip install cookiecutter`
+### 开始一个新项目
 
+启动新项目就像在命令行运行此命令一样简单。无需先创建目录，cookiecutter 会为您完成。
 
-### Starting a new project
-
-Starting a new project is as easy as running this command at the command line. No need to create a directory first, the cookiecutter will do it for you.
-
-```nohighlight
-cookiecutter https://github.com/drivendata/cookiecutter-data-science
+```bash
+cookiecutter https://github.com/Godsing/cookiecutter-data-science
 ```
 
-### Example
+## 目录结构
 
-<script id="asciicast-244658" src="https://asciinema.org/a/244658.js" async></script>
-
-## Directory structure
-
-```nohighlight
-├── LICENSE
-├── Makefile           <- Makefile with commands like `make data` or `make train`
-├── README.md          <- The top-level README for developers using this project.
+```
+├── README.md          <- 项目开发者使用的顶级 README 文件
 ├── data
-│   ├── external       <- Data from third party sources.
-│   ├── interim        <- Intermediate data that has been transformed.
-│   ├── processed      <- The final, canonical data sets for modeling.
-│   └── raw            <- The original, immutable data dump.
+│   ├── raw            <- 原始、不可变的数据转储
+│   ├── processed      <- 最终用于建模的规范化数据集
+│   ├── interim        <- 经过转换的中间数据
+│   └── external       <- 第三方数据源
 │
-├── docs               <- A default Sphinx project; see sphinx-doc.org for details
+├── notebooks          <- Jupyter 笔记本。命名约定为数字(用于排序)+描述，例如:
+│                         `1.0-initial-data-exploration.ipynb`
 │
-├── models             <- Trained and serialized models, model predictions, or model summaries
-│
-├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-│                         the creator's initials, and a short `-` delimited description, e.g.
-│                         `1.0-jqp-initial-data-exploration`.
-│
-├── references         <- Data dictionaries, manuals, and all other explanatory materials.
-│
-├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-│   └── figures        <- Generated graphics and figures to be used in reporting
-│
-├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-│                         generated with `pip freeze > requirements.txt`
-│
-├── setup.py           <- Make this project pip installable with `pip install -e`
-├── src                <- Source code for use in this project.
-│   ├── __init__.py    <- Makes src a Python module
+├── src                <- 用于此项目的源代码
+│   ├── __init__.py    <- 使 src 目录成为一个 Python 模块
 │   │
-│   ├── data           <- Scripts to download or generate data
-│   │   └── make_dataset.py
+│   ├── data           <- 下载或处理数据的脚本
 │   │
-│   ├── features       <- Scripts to turn raw data into features for modeling
-│   │   └── build_features.py
+│   ├── modeling       <- 模型结构(核心代码，训练、评估、推理时均需用到)
+│   │   ├── modeling.py
+│   │   └── config.json
 │   │
-│   ├── models         <- Scripts to train models and then use trained models to make
-│   │   │                 predictions
-│   │   ├── predict_model.py
-│   │   └── train_model.py
+│   ├── train          <- 训练模型的脚本，加载训练集并生成模型权重、记录训练过程
 │   │
-│   └── visualization  <- Scripts to create exploratory and results oriented visualizations
-│       └── visualize.py
+│   ├── eval           <- 评估模型的脚本，加载验证集并生成评估报告
+│   │
+│   └── infer          <- 推理(预测)脚本，可提供 RESTful API 或 CLI 或 Web UI
 │
-└── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
+├── weights            <- 训练得到的模型权重，及其相关的必要配置信息
+│
+├── reports            <- 评估结果等结论性的内容，以图、表等形式呈现
+│
+├── logs               <- 推理接口的日志文件
+│
+├── tmp                <- 临时文件(例如：训练时的 TF events 文件、评估时的中间文件)
+│
+├── requirements.txt   <- 环境要求文件。可通过 `pipreqs . --encoding=utf8 --force`
+│                         或 `pip freeze > requirements.txt` 生成
+│
+├── setup.py           <- 使项目可通过 `pip install -e .` 安装，以便 `import src`.
+├── Makefile           <- 包含诸如 `make data` 或 `make train` 等命令的 Makefile
+└── LICENSE
 ```
 
-## Opinions
+## 意见
 
-There are some opinions implicit in the project structure that have grown out of our experience with what works and what doesn't when collaborating on data science projects. Some of the opinions are about workflows, and some of the opinions are about tools that make life easier. Here are some of the beliefs which this project is built on—if you've got thoughts, please [contribute or share them](#contributing).
+项目结构中隐含了一些观点，这些观点源自我们在数据科学项目合作时对哪些有效、哪些无效的经验。有些观点是关于工作流程的，有些观点是关于让生活更轻松的工具的。以下是该项目所基于的一些信念 - 如果您有任何想法，请[贡献或分享](https://github.com/Godsing/cookiecutter-data-science#contributing)。
 
-### Data is immutable
+### 数据是不可变的
 
-Don't ever edit your raw data, especially not manually, and especially not in Excel. Don't overwrite your raw data. Don't save multiple versions of the raw data. Treat the data (and its format) as immutable. The code you write should move the raw data through a pipeline to your final analysis. You shouldn't have to run all of the steps every time you want to make a new figure (see [Analysis is a DAG](#analysis-is-a-dag)), but anyone should be able to reproduce the final products with only the code in `src` and the data in `data/raw`.
+切勿编辑原始数据，尤其不要手动编辑，尤其不要在 Excel 中编辑。不要覆盖您的原始数据。不要保存原始数据的多个版本。将数据（及其格式）视为不可变。您编写的代码应该通过管道将原始数据移至最终分析。您不必每次想要创建新图形时都运行所有步骤（请参阅[Analysis is a DAG](https://github.com/Godsing/cookiecutter-data-science#analysis-is-a-dag)），但任何人都应该能够仅使用 中的代码`src`和 中的数据来重现最终产品`data/raw`。
 
-Also, if data is immutable, it doesn't need source control in the same way that code does. Therefore, ***by default, the data folder is included in the `.gitignore` file.*** If you have a small amount of data that rarely changes, you may want to include the data in the repository. Github currently warns if files are over 50MB and rejects files over 100MB. Some other options for storing/syncing large data include [AWS S3](https://aws.amazon.com/s3/) with a syncing tool (e.g., [`s3cmd`](http://s3tools.org/s3cmd)), [Git Large File Storage](https://git-lfs.github.com/), [Git Annex](https://git-annex.branchable.com/), and [dat](http://dat-data.com/). Currently by default, we ask for an S3 bucket and use [AWS CLI](http://docs.aws.amazon.com/cli/latest/reference/s3/index.html) to sync data in the `data` folder with the server.
+此外，如果数据是不可变的，则它不需要像代码那样进行源代码控制。因此，***默认情况下，数据文件夹包含在`.gitignore`文件中。***如果您有少量很少更改的数据，您可能希望将这些数据包含在存储库中。Github 目前会在文件超过 50MB 时发出警告，并拒绝超过 100MB 的文件。用于存储/同步大数据的其他一些选项包括带有同步工具（例如）的[AWS S3 、 ](https://aws.amazon.com/s3/)[Git Large File Storage](https://git-lfs.github.com/)、[Git Annex](https://git-annex.branchable.com/)和[dat](http://dat-data.com/)。目前默认情况下，我们请求 S3 存储桶并使用[AWS CLI](http://docs.aws.amazon.com/cli/latest/reference/s3/index.html)将文件夹中的数据与服务器同步。[`s3cmd`](http://s3tools.org/s3cmd)`data`
 
-### Notebooks are for exploration and communication
+### 笔记本用于探索和交流
 
-Notebook packages like the [Jupyter notebook](http://jupyter.org/), [Beaker notebook](http://beakernotebook.com/), [Zeppelin](http://zeppelin-project.org/), and other literate programming tools are very effective for exploratory data analysis. However, these tools can be less effective for reproducing an analysis. When we use notebooks in our work, we often subdivide the `notebooks` folder. For example, `notebooks/exploratory` contains initial explorations, whereas `notebooks/reports` is more polished work that can be exported as html to the `reports` directory.
+[Jupyter Notebook](http://jupyter.org/)、[Beaker Notebook](http://beakernotebook.com/)、[Zeppelin](http://zeppelin-project.org/)和其他文学编程工具等 Notebook 软件包对于探索性数据分析非常有效。然而，这些工具对于重现分析的效果可能较差。我们在工作中使用笔记本的时候，经常会对`notebooks`文件夹进行细分。例如，`notebooks/exploratory`包含初步探索，而`notebooks/reports`更精致的工作可以作为 html 导出到`reports`目录。
 
-Since notebooks are challenging objects for source control (e.g., diffs of the `json` are often not human-readable and merging is near impossible), we recommended not collaborating directly with others on Jupyter notebooks. There are two steps we recommend for using notebooks effectively:
+由于笔记本对于源代码控制来说是具有挑战性的对象（例如，人类通常无法读取差异`json`，并且合并几乎不可能），因此我们建议不要在 Jupyter 笔记本上直接与其他人协作。为了有效地使用笔记本，我们建议采取两个步骤：
 
- 1. Follow a naming convention that shows the owner and the order the analysis was done in. We use the format `<step>-<ghuser>-<description>.ipynb` (e.g., `0.3-bull-visualize-distributions.ipynb`).
+1. 遵循显示所有者和分析完成顺序的命名约定。我们使用格式`<step>-<ghuser>-<description>.ipynb`（例如，`0.3-bull-visualize-distributions.ipynb`）。
+2. 重构好的部分。不要编写代码在多个笔记本中执行相同的任务。如果是数据预处理任务，则将其放入管道中`src/data/make_dataset.py`并从中加载数据`data/interim`。如果它是有用的实用程序代码，请将其重构为`src`.
 
- 2. Refactor the good parts. Don't write code to do the same task in multiple notebooks. If it's a data preprocessing task, put it in the pipeline at `src/data/make_dataset.py` and load data from `data/interim`. If it's useful utility code, refactor it to `src`.
-
- Now by default we turn the project into a Python package (see the `setup.py` file). You can import your code and use it in notebooks with a cell like the following:
+现在默认情况下我们将项目转换为 Python 包（请参阅`setup.py`文件）。您可以导入代码并在具有如下单元格的笔记本中使用它：
 
 ```
 # OPTIONAL: Load the "autoreload" extension so that code can change
@@ -155,32 +143,34 @@ Since notebooks are challenging objects for source control (e.g., diffs of the `
 from src.data import make_dataset
 ```
 
-### Analysis is a directed acyclic graph ([DAG](https://en.wikipedia.org/wiki/Directed_acyclic_graph))
 
-Often in an analysis you have long-running steps that preprocess data or train models. If these steps have been run already (and you have stored the output somewhere like the `data/interim` directory), you don't want to wait to rerun them every time. We prefer [`make`](https://www.gnu.org/software/make/) for managing steps that depend on each other, especially the long-running ones. Make is a common tool on Unix-based platforms (and [is available for Windows]()). Following the [`make` documentation](https://www.gnu.org/software/make/), [Makefile conventions](https://www.gnu.org/prep/standards/html_node/Makefile-Conventions.html#Makefile-Conventions), and [portability guide](http://www.gnu.org/savannah-checkouts/gnu/autoconf/manual/autoconf-2.69/html_node/Portable-Make.html#Portable-Make) will help ensure your Makefiles work effectively across systems. Here are [some](http://zmjones.com/make/) [examples](http://blog.kaggle.com/2012/10/15/make-for-data-scientists/) to [get started](https://web.archive.org/web/20150206054212/http://www.bioinformaticszen.com/post/decomplected-workflows-makefiles/). A number of data folks use `make` as their tool of choice, including [Mike Bostock](https://bost.ocks.org/mike/make/).
 
-There are other tools for managing DAGs that are written in Python instead of a DSL (e.g., [Paver](http://paver.github.io/paver/#), [Luigi](http://luigi.readthedocs.org/en/stable/index.html), [Airflow](https://airflow.apache.org/index.html), [Snakemake](https://snakemake.readthedocs.io/en/stable/), [Ruffus](http://www.ruffus.org.uk/), or [Joblib](https://pythonhosted.org/joblib/memory.html)). Feel free to use these if they are more appropriate for your analysis.
+### 分析是有向无环图（[DAG](https://en.wikipedia.org/wiki/Directed_acyclic_graph)）
 
-### Build from the environment up
+通常，在分析中，您需要长时间运行的步骤来预处理数据或训练模型。如果这些步骤已经运行（并且您已将输出存储在目录等位置`data/interim`），您不想每次都等待重新运行它们。我们更喜欢[`make`](https://www.gnu.org/software/make/)管理相互依赖的步骤，尤其是长时间运行的步骤。Make 是基于 Unix 的平台上的常用工具（并且[可用于 Windows](https://github.com/Godsing/cookiecutter-data-science/blob/wgx/docs/docs)）。遵循[`make`文档](https://www.gnu.org/software/make/)、[Makefile 约定](https://www.gnu.org/prep/standards/html_node/Makefile-Conventions.html#Makefile-Conventions)和[可移植性指南](http://www.gnu.org/savannah-checkouts/gnu/autoconf/manual/autoconf-2.69/html_node/Portable-Make.html#Portable-Make)将有助于确保您的 Makefile 跨系统有效工作。下面[是](https://web.archive.org/web/20150206054212/http://www.bioinformaticszen.com/post/decomplected-workflows-makefiles/)[一些](http://zmjones.com/make/) 入门[示例](http://blog.kaggle.com/2012/10/15/make-for-data-scientists/)。人们使用许多数据`make`作为他们选择的工具，包括[Mike Bostock](https://bost.ocks.org/mike/make/)。
 
-The first step in reproducing an analysis is always reproducing the computational environment it was run in. You need the same tools, the same libraries, and the same versions to make everything play nicely together.
+还有其他用 Python 而不是 DSL 编写的 DAG 管理工具（例如[Paver](http://paver.github.io/paver/#)、[Luigi](http://luigi.readthedocs.org/en/stable/index.html)、[Airflow](https://airflow.apache.org/index.html)、[Snakemake](https://snakemake.readthedocs.io/en/stable/)、[Ruffus](http://www.ruffus.org.uk/)或[Joblib](https://pythonhosted.org/joblib/memory.html)）。如果它们更适合您的分析，请随意使用它们。
 
-One effective approach to this is use [virtualenv](https://virtualenv.pypa.io/en/latest/) (we recommend [virtualenvwrapper](https://virtualenvwrapper.readthedocs.org/en/latest/) for managing virtualenvs). By listing all of your requirements in the repository (we include a `requirements.txt` file) you can easily track the packages needed to recreate the analysis. Here is a good workflow:
+### 从环境开始构建
 
- 1. Run `mkvirtualenv` when creating a new project
- 2. `pip install` the packages that your analysis needs
- 3. Run `pip freeze > requirements.txt` to pin the exact package versions used to recreate the analysis
- 4. If you find you need to install another package, run `pip freeze > requirements.txt` again and commit the changes to version control.
+重现分析的第一步始终是重现运行分析的计算环境。您需要相同的工具、相同的库和相同的版本，以使所有内容都能很好地协同工作。
 
-If you have more complex requirements for recreating your environment, consider a virtual machine based approach such as [Docker](https://www.docker.com/) or [Vagrant](https://www.vagrantup.com/). Both of these tools use text-based formats (Dockerfile and Vagrantfile respectively) you can easily add to source control to describe how to create a virtual machine with the requirements you need.
+一种有效的方法是使用[virtualenv](https://virtualenv.pypa.io/en/latest/)（我们建议使用[virtualenvwrapper](https://virtualenvwrapper.readthedocs.org/en/latest/)来管理 virtualenv）。通过在存储库中列出您的所有需求（我们包含一个`requirements.txt`文件），您可以轻松跟踪重新创建分析所需的包。这是一个很好的工作流程：
 
-### Keep secrets and configuration out of version control
+1. `mkvirtualenv`创建新项目时运行
+2. `pip install`您的分析所需的软件包
+3. 运行`pip freeze > requirements.txt`以固定用于重新创建分析的确切包版本
+4. 如果您发现需要安装另一个软件包，请`pip freeze > requirements.txt`再次运行并将更改提交到版本控制。
 
-You _really_ don't want to leak your AWS secret key or Postgres username and password on Github. Enough said — see the [Twelve Factor App](http://12factor.net/config) principles on this point. Here's one way to do this:
+如果您对重新创建环境有更复杂的要求，请考虑基于虚拟机的方法，例如[Docker](https://www.docker.com/)或[Vagrant](https://www.vagrantup.com/)。这两个工具都使用基于文本的格式（分别是 Dockerfile 和 Vagrantfile），您可以轻松添加到源代码管理中，以描述如何根据您的需求创建虚拟机。
 
-#### Store your secrets and config variables in a special file
+### 将秘密和配置置于版本控制之外
 
-Create a `.env` file in the project root folder. Thanks to the `.gitignore`, this file should never get committed into the version control repository. Here's an example:
+您*确实*不想在 Github 上泄露您的 AWS 密钥或 Postgres 用户名和密码。说得够多了——关于这一点，请参阅[十二要素应用程序](http://12factor.net/config)原则。这是执行此操作的一种方法：
+
+#### 将您的秘密和配置变量存储在特殊文件中
+
+`.env`在项目根文件夹中创建一个文件。感谢`.gitignore`，这个文件永远不应该被提交到版本控制存储库中。这是一个例子：
 
 ```nohighlight
 # example .env file
@@ -190,11 +180,13 @@ AWS_SECRET_ACCESS_KEY=mysecretkey
 OTHER_VARIABLE=something
 ```
 
-#### Use a package to load these variables automatically.
 
-If you look at the stub script in `src/data/make_dataset.py`, it uses a package called [python-dotenv](https://github.com/theskumar/python-dotenv) to load up all the entries in this file as environment variables so they are accessible with `os.environ.get`. Here's an example snippet adapted from the `python-dotenv` documentation:
 
-```python
+#### 使用包自动加载这些变量。
+
+如果您查看 中的存根脚本，它使用一个名为[python-dotenv](https://github.com/theskumar/python-dotenv)`src/data/make_dataset.py`的包将该文件中的所有条目加载为环境变量，以便可以使用. 以下是改编自文档的示例片段：`os.environ.get``python-dotenv`
+
+```
 # src/data/dotenv_example.py
 import os
 from dotenv import load_dotenv, find_dotenv
@@ -209,8 +201,12 @@ database_url = os.environ.get("DATABASE_URL")
 other_variable = os.environ.get("OTHER_VARIABLE")
 ```
 
-#### AWS CLI configuration
-When using Amazon S3 to store data, a simple method of managing AWS access is to set your access keys to environment variables. However, managing mutiple sets of keys on a single machine (e.g. when working on multiple projects) it is best to use a [credentials file](https://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html), typically located in `~/.aws/credentials`. A typical file might look like:
+
+
+#### AWS CLI 配置
+
+使用 Amazon S3 存储数据时，管理 AWS 访问的一个简单方法是将访问密钥设置为环境变量。但是，在单台计算机上管理多组密钥（例如，在处理多个项目时），最好使用[凭证文件](https://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html)，通常位于`~/.aws/credentials`. 典型的文件可能如下所示：
+
 ```
 [default]
 aws_access_key_id=myaccesskey
@@ -220,27 +216,30 @@ aws_secret_access_key=mysecretkey
 aws_access_key_id=myprojectaccesskey
 aws_secret_access_key=myprojectsecretkey
 ```
-You can add the profile name when initialising a project; assuming no applicable environment variables are set, the profile credentials will be used by default.
 
-### Be conservative in changing the default folder structure
 
-To keep this structure broadly applicable for many different kinds of projects, we think the best approach is to be liberal in changing the folders around for _your_ project, but be conservative in changing the default structure for _all_ projects.
 
-We've created a <span class="label label-info">folder-layout</span> label specifically for issues proposing to add, subtract, rename, or move folders around. More generally, we've also created a <span class="label label-warning">needs-discussion</span> label for issues that should have some careful discussion and broad support before being implemented.
+您可以在初始化项目时添加配置文件名称；假设未设置适用的环境变量，则默认情况下将使用配置文件凭据。
 
-## Contributing
+### 更改默认文件夹结构时要保守
 
-The Cookiecutter Data Science project is opinionated, but not afraid to be wrong. Best practices change, tools evolve, and lessons are learned. **The goal of this project is to make it easier to start, structure, and share an analysis.** [Pull requests](https://github.com/drivendata/cookiecutter-data-science/pulls) and [filing issues](https://github.com/drivendata/cookiecutter-data-science/issues) is encouraged. We'd love to hear what works for you, and what doesn't.
+为了使这种结构广泛适用于许多不同类型的项目，我们认为最好的方法是自由地更改项目周围的文件夹*，*但在更改*所有*项目的默认结构时保持保守。
 
-If you use the Cookiecutter Data Science project, link back to this page or [give us a holler](https://twitter.com/drivendataorg) and [let us know](mailto:info@drivendata.org)!
+我们专门针对建议添加、删除、重命名或移动文件夹的问题创建了文件夹布局标签。更一般地说，我们还为在实施之前应进行仔细讨论和广泛支持的问题创建了需求讨论标签。
 
-## Links to related projects and references
+## 贡献
 
-Project structure and reproducibility is talked about more in the R research community. Here are some projects and blog posts if you're working in R that may help you out.
+Cookiecutter 数据科学项目固执己见，但不怕犯错。最佳实践不断变化，工具不断发展，经验教训不断汲取。**该项目的目标是让分析的启动、构建和共享变得更加容易。** 鼓励[拉取请求](https://github.com/drivendata/cookiecutter-data-science/pulls)和[提交问题。](https://github.com/drivendata/cookiecutter-data-science/issues)我们很想听听什么对您有用，什么不适合您。
 
- - [Project Template](http://projecttemplate.net/index.html) - An R data analysis template
- - "[Designing projects](http://nicercode.github.io/blog/2013-04-05-projects/)" on Nice R Code
- - "[My research workflow](http://www.carlboettiger.info/2012/05/06/research-workflow.html)" on Carlboettiger.info
- - "[A Quick Guide to Organizing Computational Biology Projects](http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424)" in PLOS Computational Biology
+如果您使用 Cookiecutter 数据科学项目，请链接回此页面或[给我们留言](https://twitter.com/drivendataorg)并[让我们知道](mailto:info@drivendata.org)！
 
-Finally, a huge thanks to the [Cookiecutter](https://cookiecutter.readthedocs.org/en/latest/) project ([github](https://github.com/audreyr/cookiecutter)), which is helping us all spend less time thinking about and writing boilerplate and more time getting things done.
+## 相关项目和参考文献的链接
+
+R 研究社区更多地讨论了项目结构和可重复性。如果您使用 R 工作，这里有一些项目和博客文章可能会对您有所帮助。
+
+- [项目模板](http://projecttemplate.net/index.html)- R 数据分析模板
+- Nice R Code 上的“[设计项目”](http://nicercode.github.io/blog/2013-04-05-projects/)
+- Carlboettiger.info 上的“[我的研究流程](http://www.carlboettiger.info/2012/05/06/research-workflow.html)”
+- PLOS 计算生物学中的“[组织计算生物学项目的快速指南”](http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424)
+
+最后，非常感谢[Cookiecutter](https://cookiecutter.readthedocs.org/en/latest/)项目 ( [github](https://github.com/audreyr/cookiecutter) )，它帮助我们花更少的时间思考和编写样板文件，而将更多的时间花在完成工作上。

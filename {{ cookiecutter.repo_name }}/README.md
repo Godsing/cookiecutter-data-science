@@ -1,57 +1,49 @@
-{{cookiecutter.project_name}}
-==============================
+# {{cookiecutter.project_name}}
 
 {{cookiecutter.description}}
 
-Project Organization
-------------
+## 项目结构
 
-    ├── LICENSE
-    ├── Makefile           <- Makefile with commands like `make data` or `make train`
-    ├── README.md          <- The top-level README for developers using this project.
-    ├── data
-    │   ├── external       <- Data from third party sources.
-    │   ├── interim        <- Intermediate data that has been transformed.
-    │   ├── processed      <- The final, canonical data sets for modeling.
-    │   └── raw            <- The original, immutable data dump.
-    │
-    ├── docs               <- A default Sphinx project; see sphinx-doc.org for details
-    │
-    ├── models             <- Trained and serialized models, model predictions, or model summaries
-    │
-    ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-    │                         the creator's initials, and a short `-` delimited description, e.g.
-    │                         `1.0-jqp-initial-data-exploration`.
-    │
-    ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
-    │
-    ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-    │   └── figures        <- Generated graphics and figures to be used in reporting
-    │
-    ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-    │                         generated with `pip freeze > requirements.txt`
-    │
-    ├── setup.py           <- makes project pip installable (pip install -e .) so src can be imported
-    ├── src                <- Source code for use in this project.
-    │   ├── __init__.py    <- Makes src a Python module
-    │   │
-    │   ├── data           <- Scripts to download or generate data
-    │   │   └── make_dataset.py
-    │   │
-    │   ├── features       <- Scripts to turn raw data into features for modeling
-    │   │   └── build_features.py
-    │   │
-    │   ├── models         <- Scripts to train models and then use trained models to make
-    │   │   │                 predictions
-    │   │   ├── predict_model.py
-    │   │   └── train_model.py
-    │   │
-    │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
-    │       └── visualize.py
-    │
-    └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
+```
+├── README.md          <- 项目开发者使用的顶级 README 文件
+├── data
+│   ├── raw            <- 原始、不可变的数据转储
+│   ├── processed      <- 最终用于建模的规范化数据集
+│   ├── interim        <- 经过转换的中间数据
+│   └── external       <- 第三方数据源
+│
+├── notebooks          <- Jupyter 笔记本。命名约定为数字(用于排序)+描述，例如:
+│                         `1.0-initial-data-exploration.ipynb`
+│
+├── src                <- 用于此项目的源代码
+│   ├── __init__.py    <- 使 src 目录成为一个 Python 模块
+│   │
+│   ├── data           <- 下载或处理数据的脚本
+│   │
+│   ├── modeling       <- 模型结构(核心代码，训练、评估、推理时均需用到)
+│   │   ├── modeling.py
+│   │   └── config.json
+│   │
+│   ├── train          <- 训练模型的脚本，加载训练集并生成模型权重、记录训练过程
+│   │
+│   ├── eval           <- 评估模型的脚本，加载验证集并生成评估报告
+│   │
+│   └── infer          <- 推理(预测)脚本，可提供 RESTful API 或 CLI 或 Web UI
+│
+├── weights            <- 训练得到的模型权重，及其相关的必要配置信息
+│
+├── reports            <- 评估结果等结论性的内容，以图、表等形式呈现
+│
+├── logs               <- 推理接口的日志文件
+│
+├── tmp                <- 临时文件(例如：训练时的 TF events 文件、评估时的中间文件)
+│
+├── requirements.txt   <- 环境要求文件。可通过 `pipreqs . --encoding=utf8 --force`
+│                         或 `pip freeze > requirements.txt` 生成
+│
+├── setup.py           <- 使项目可通过 `pip install -e .` 安装，以便 `import src`.
+├── Makefile           <- 包含诸如 `make data` 或 `make train` 等命令的 Makefile
+└── LICENSE
+```
 
-
---------
-
-<p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
+> 本项目基于 [cookiecutter data science](https://github.com/Godsing/cookiecutter-data-science) 项目模板创建。

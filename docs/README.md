@@ -1,20 +1,27 @@
-Generating the docs
-----------
+## 生成本项目文档
 
-Install requirements:
+安装所需的包：
 
-    pip install -r requirements.txt
+```
+pip install -r requirements.txt
+```
 
-Change directories into the docs folder:
+进入 docs 文件夹：
 
-    cd docs
+```
+cd docs
+```
 
-Use [mkdocs](http://www.mkdocs.org/) structure to update the documentation. Test locally with:
+使用[mkdocs](http://www.mkdocs.org/)结构来更新文档。本地测试：
 
-    mkdocs serve
+```
+mkdocs serve
+```
 
-Once the docs look good, publish to `gh-pages` branch with:
+一旦文档看起来不错，就可以使用以下命令发布到`gh-pages`分支：
 
-    mkdocs gh-deploy --clean
+```
+mkdocs gh-deploy --clean
+```
 
-** Note **: Never edit the generated site by hand because using `gh-deploy` blows away the `gh-pages` branch and you'll lose your edits.
+**注意**：切勿手动编辑生成的站点，因为使用`gh-deploy`会“吹走”`gh-pages`分支，并且您将丢失所做的编辑。

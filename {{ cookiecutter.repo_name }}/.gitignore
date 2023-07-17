@@ -1,3 +1,9 @@
+# ignore some directories by default
+/logs/
+/reports/
+/tmp/
+/weights/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -57,7 +63,7 @@ docs/_build/
 target/
 
 # DotEnv configuration
-.env
+*.env
 
 # Database
 *.db

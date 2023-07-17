@@ -6,7 +6,9 @@ _A logical, reasonably standardized, but flexible project structure for doing an
 > Fork from: [cookiecutter-data-science](https://github.com/drivendata/cookiecutter-data-science)
 > 本仓库在原始仓库的基础上做了一些修改，以适应自己的工作习惯。如果您觉得还不错，欢迎使用！
 
-## 使用该模板的要求
+## 用法
+
+### 使用该模板的要求
 
  - Python 2.7 or 3.5+
  - [Cookiecutter Python 包](http://cookiecutter.readthedocs.org/en/latest/installation.html) >= 1.4.0: 可以使用 pip by 或 conda 安装（具体取决于您管理 Python 包的方式）：
@@ -22,7 +24,7 @@ _A logical, reasonably standardized, but flexible project structure for doing an
     conda install cookiecutter
     ```
 
-## 使用该模板创建新项目
+### 使用该模板创建新项目
 
 ```bash
 cookiecutter -c wgx https://github.com/Godsing/cookiecutter-data-science
@@ -73,4 +75,22 @@ cookiecutter -c wgx https://github.com/Godsing/cookiecutter-data-science
 ├── setup.py           <- 使项目可通过 `pip install -e .` 安装，以便 `import src`.
 ├── Makefile           <- 包含诸如 `make data` 或 `make train` 等命令的 Makefile
 └── LICENSE
+```
+
+## 参与贡献
+
+非常欢迎贡献你的代码，以继续优化该模板！
+
+如果不知道如何操作，请参考[这里](https://github.com/Godsing/cookiecutter-data-science/blob/wgx/docs/docs/index.md#参与贡献)。
+
+### 安装依赖
+
+```bash
+pip install -r requirements.txt
+```
+
+### 运行测试
+
+```bash
+py.test tests
 ```

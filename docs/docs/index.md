@@ -227,11 +227,11 @@ aws_secret_access_key=myprojectsecretkey
 
 我们专门针对建议添加、删除、重命名或移动文件夹的问题创建了文件夹布局标签。更一般地说，我们还为在实施之前应进行仔细讨论和广泛支持的问题创建了需求讨论标签。
 
-## 贡献
+## 参与贡献
 
-Cookiecutter 数据科学项目固执己见，但不怕犯错。最佳实践不断变化，工具不断发展，经验教训不断汲取。**该项目的目标是让分析的启动、构建和共享变得更加容易。** 鼓励[拉取请求](https://github.com/drivendata/cookiecutter-data-science/pulls)和[提交问题。](https://github.com/drivendata/cookiecutter-data-science/issues)我们很想听听什么对您有用，什么不适合您。
+Cookiecutter 数据科学项目固执己见，但不怕犯错。最佳实践不断变化，工具不断发展，经验教训不断汲取。**该项目的目标是让分析的启动、构建和共享变得更加容易。** 鼓励[拉取请求](https://github.com/Godsing/cookiecutter-data-science/pulls)和[提交问题。](https://github.com/Godsing/cookiecutter-data-science/issues)我们很想听听什么对您有用，什么不适合您。
 
-如果您使用 Cookiecutter 数据科学项目，请链接回此页面或[给我们留言](https://twitter.com/drivendataorg)并[让我们知道](mailto:info@drivendata.org)！
+如果您使用 Cookiecutter 数据科学项目，请链接回此页面或！
 
 ## 相关项目和参考文献的链接
 
@@ -239,7 +239,7 @@ R 研究社区更多地讨论了项目结构和可重复性。如果您使用 R 
 
 - [项目模板](http://projecttemplate.net/index.html)- R 数据分析模板
 - Nice R Code 上的“[设计项目”](http://nicercode.github.io/blog/2013-04-05-projects/)
-- Carlboettiger.info 上的“[我的研究流程](http://www.carlboettiger.info/2012/05/06/research-workflow.html)”
+- Carlboettiger.info 上的“[研究流程](http://www.carlboettiger.info/2012/05/06/research-workflow.html)”
 - PLOS 计算生物学中的“[组织计算生物学项目的快速指南”](http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424)
 
 最后，非常感谢[Cookiecutter](https://cookiecutter.readthedocs.org/en/latest/)项目 ( [github](https://github.com/audreyr/cookiecutter) )，它帮助我们花更少的时间思考和编写样板文件，而将更多的时间花在完成工作上。

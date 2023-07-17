@@ -31,7 +31,7 @@ cookiecutter -c wgx https://github.com/Godsing/cookiecutter-data-science
 > 此项目模板**即将**转到 v2 版本，届时将需要使用命令 `ccds ...` 而不是 `cookiecutter ...`。
 > 不过 cookiecutter 命令和此版本的模板仍然可用，但需要显式使用 `-c wgx` 来选择它。
 
-新项目的目录结构如下：
+以上命令创建得到的新项目，目录结构如下：
 
 ```
 ├── README.md          <- 项目开发者使用的顶级 README 文件

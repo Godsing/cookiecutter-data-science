@@ -37,9 +37,9 @@ class TestCookieSetup(object):
         args = ['python', str(setup_), '--author']
         p = check_output(args).decode('ascii').strip()
         if pytest.param.get('author_name'):
-            assert p == 'DataScience'
+            assert p == 'Godsing'
         else:
-            assert p == 'Your name (or your organization/company/team)'
+            assert p == 'Your name (or your organization/team)'
 
     def test_readme(self):
         readme_path = self.path / 'README.md'
@@ -47,13 +47,13 @@ class TestCookieSetup(object):
         assert no_curlies(readme_path)
         if pytest.param.get('project_name'):
             with open(readme_path) as fin:
-                assert 'DataScience' == next(fin).strip()
+                assert '# DataScience' == next(fin).strip()
 
     def test_setup(self):
         setup_ = self.path / 'setup.py'
         args = ['python', str(setup_), '--version']
         p = check_output(args).decode('ascii').strip()
-        assert p == '0.1.0'
+        assert p == '0.0.1'
 
     def test_license(self):
         license_path = self.path / 'LICENSE'
@@ -73,7 +73,8 @@ class TestCookieSetup(object):
         reqs_path = self.path / 'requirements.txt'
         assert reqs_path.exists()
         assert no_curlies(reqs_path)
-        if pytest.param.get('python_interpreter'):
+        pyi = pytest.param.get('python_interpreter')
+        if pyi and pyi != 'python3':
             with open(reqs_path) as fin:
                 lines = list(map(lambda x: x.strip(), fin.readlines()))
             assert 'pathlib2' in lines

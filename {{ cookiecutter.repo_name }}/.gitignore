@@ -1,4 +1,5 @@
 # ignore some directories by default
+/data/
 /logs/
 /reports/
 /tmp/
@@ -74,6 +75,7 @@ target/
 
 # VS Code
 .vscode/
+*.code-workspace
 
 # Spyder
 .spyproject/
@@ -93,3 +95,6 @@ target/
 
 # Mypy cache
 .mypy_cache/
+
+# Do not ignore
+!*.gitkeep
